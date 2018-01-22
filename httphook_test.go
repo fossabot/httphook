@@ -69,7 +69,7 @@ func TestHook_Fire(t *testing.T) {
 					"test-key": make(chan int),
 				},
 			},
-			ExpectedError: "failed to marshal payload due to error json: unsupported type: chan int",
+			ExpectedError: "failed to marshal payload due to error",
 		},
 		// TEST CASE 3: Invalid request URI.
 		{
@@ -80,7 +80,7 @@ func TestHook_Fire(t *testing.T) {
 				},
 				Time: time.Now(),
 			},
-			ExpectedError: "failed to build request due to error parse :: missing protocol scheme",
+			ExpectedError: "failed to build request due to error",
 			Endpoint:      ":",
 		},
 		// TEST CASE 4: Error in BeforePost handler.
@@ -123,7 +123,7 @@ func TestHook_Fire(t *testing.T) {
 				},
 				Time: time.Now(),
 			},
-			ExpectedError:  "failed to post payload, the server responded with a status of 404",
+			ExpectedError:  "failed to post payload, the server responded with a status of",
 			ExpectedStatus: http.StatusNotFound,
 		},
 		// TEST CASE 7: Endpoint handler does not exist.
@@ -138,7 +138,7 @@ func TestHook_Fire(t *testing.T) {
 				},
 				Time: time.Now(),
 			},
-			ExpectedError:  "failed to perform request due to error Post http://localhost:8081/invalid: dial tcp [::1]:8081: connectex: No connection could be made because the target machine actively refused it.",
+			ExpectedError:  "failed to perform request due to error",
 			ExpectedStatus: http.StatusNotFound,
 		},
 	}
@@ -176,7 +176,7 @@ func TestHook_Fire(t *testing.T) {
 		}
 
 		if err := hook.Fire(&tc.Entry); err != nil {
-			assert.Equal(t, tc.ExpectedError, err.Error())
+			assert.Contains(t, err.Error(), tc.ExpectedError)
 		}
 	}
 }
