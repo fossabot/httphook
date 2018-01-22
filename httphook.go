@@ -23,11 +23,19 @@ type (
 		name     string
 
 		// Method to be executed before performing the request.
-		BeforePost func(req *http.Request) error
+		BeforePost BeforeFunc
 
 		// Method to be executed after performing the request.
-		AfterPost func(res *http.Response) error
+		AfterPost AfterFunc
 	}
+
+	// BeforeFunc is a convenience wrapper for the method executed
+	// before a request is made.
+	BeforeFunc func(req *http.Request) error
+
+	// AfterFunc is a convenience wrapper for the method executed
+	// after a request is made.
+	AfterFunc func(res *http.Response) error
 
 	// Log represents the format in which we want to post logging entries to the endpoint.
 	Log struct {
