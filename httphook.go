@@ -1,3 +1,6 @@
+// Package httphook contains types for creating a logrus hook to send logs
+// via HTTP to a configured endpoint. See https://github.com/sirupsen/logrus
+// for more details.
 package httphook
 
 import (
@@ -19,20 +22,28 @@ type (
 		endpoint string
 		name     string
 
+		// Method to be executed before performing the request.
 		BeforePost func(req *http.Request) error
-		AfterPost  func(res *http.Response) error
+
+		// Method to be executed after performing the request.
+		AfterPost func(res *http.Response) error
 	}
 
 	// Log represents the format in which we want to post logging entries to the endpoint.
 	Log struct {
-		Message   string        `json:"message"`
-		Fields    logrus.Fields `json:"fields"`
-		Timestamp time.Time     `json:"timestamp"`
+		// The log's message string.
+		Message string `json:"message"`
+
+		// The log's additional metadata.
+		Fields logrus.Fields `json:"fields"`
+
+		// The time at which the log happened.
+		Timestamp time.Time `json:"timestamp"`
 	}
 )
 
 // New creates an instance of the Hook type, specifying the name of the application producing
-// logs, the endpoint to post logs to & the logging levels for which logs
+// logs, the endpoint to post logs to & the logging levels for which requests will be made.
 func New(name, endpoint string, levels []logrus.Level) *Hook {
 	return &Hook{
 		client:   http.Client{},
