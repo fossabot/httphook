@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: instrumentisto/glide:latest
+      - image: instrumentisto/dep
 
     working_directory: /go/src/github.com/hourglassdesign/httphook
 
@@ -14,7 +14,7 @@ jobs:
       - run:
           name: Get dependencies
           command: |
-            glide update
+            dep ensure
             go get github.com/jstemmer/go-junit-report
             go install github.com/jstemmer/go-junit-report
       - run:
