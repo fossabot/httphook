@@ -3,6 +3,7 @@
 [![GoDoc](https://godoc.org/github.com/hourglassdesign/httphook?status.svg)](http://godoc.org/github.com/hourglassdesign/httphook)
 [![Go Report Card](https://goreportcard.com/badge/github.com/hourglassdesign/httphook)](https://goreportcard.com/report/github.com/hourglassdesign/httphook)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hourglassdesign/httphook/release/LICENSE)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhourglassdesign%2Fhttphook.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhourglassdesign%2Fhttphook?ref=badge_shield)
 
 A simple logrus hook for forwarding logs via HTTP.
 
@@ -30,3 +31,6 @@ A simple logrus hook for forwarding logs via HTTP.
 	// Register the hook with logrus.
 	logrus.AddHook(hook)
 ```
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fhourglassdesign%2Fhttphook.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fhourglassdesign%2Fhttphook?ref=badge_large)
